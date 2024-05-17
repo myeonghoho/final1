@@ -48,44 +48,71 @@
 							width: 450px;
 							height: 350px;
 						}
+						.image-preview {
+							width: 1300px;
+							height: 200px;
+							background-color: aquamarine;
+							display: flex;
+							gap: 20px;
+						}
 					</style>
-						<form method = GET class="inputImg" method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
-							
+						<form method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
+							{% csrf_token %}
 							<div class="addImage" id="image-show"> <!-- 이미지 띄울 공간 -->
 							</div>
 							<input type="file" accept="image/*" onchange="loadFile(this)">
 							<button type="submit">등록</button>
 							<button type = "submit"> 취소 </button>
 						</form>
-
+						<div class="image-show" id="image-show"></div>
+						<script src="index.js"></script>
+					
 				</section>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Footer -->
-<div id="featured">
-	<div class="container">
-		<div class="row">
-			<div class="4u">
-				<h2>Aenean elementum facilisis</h2>
-				<a href="#" class="image full"><img src="../media/images/pic01.jpg" alt="" width="314" height="144"></a>
-				<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
-				<p><a href="#" class="button">More Details</a></p>
-			</div>
-			<div class="4u">
-				<h2>Fusce ultrices fringilla</h2>
-				<a href="#" class="image full"><img src="../media/images/pic02.jpg" alt="" width="314" height="144"></a>
-				<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
-				<p><a href="#" class="button">More Details</a></p>
-			</div>
-			<div class="4u">
-				<h2>Etiam rhoncus volutpat erat</h2>
-				<a href="#" class="image full"><img src="../media/images/pic03.jpg" alt="" width="314" height="144"></a>
-				<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
-				<p><a href="#" class="button">More Details</a></p>
+
+	<div id="featured">
+		<div class="container">
+			<div class="row">
+				
+				<div class="2u">
+					<a href="#" class="image full"><img src="../media/images/pic01.jpg" alt="" width="250" height="200"></a>					
+				</div>
+				<div class="2u">					
+					<a href="#" class="image full"><img src="../media/images/pic02.jpg" alt="" width="250" height="200"></a>
+				</div>
+				<div class="2u">					
+					<a href="#" class="image full"><img src="../media/images/pic03.jpg" alt="" width="250" height="200" ></a>
+				</div>
+				<div class="2u">
+					<a href="#" class="image full"><img src="../media/images/1.jpg" alt="" width="250" height="200"></a>
+				</div>
+				<div class="2u">
+					<a href="#" class="image full"><img src="../media/images/pic03.jpg" alt="" width="250" height="200"></a>
+				</div>
+				<div class="2u">					
+					<a href="#" class="image full"><img src="../media/images/pic03.jpg" alt="" width="250" height="200"></a>
+				</div>
+				<!-- 새로고침 버튼 추가-->
+				<button class = "reloadBtn"> 새로고침</button>
 			</div>
 		</div>
+		<script>
+			$(document).ready(function(){
+				// row 태그 안에 개수 찾기
+				var imgGet = $('#featured .row > div').length;
+				console.log(imgGet);
+
+				$('.reloadBtn').click(function(){
+					var RanNum = Math.floor(Math.random() * imgGet);
+					$('#featured .row > div').hide();
+					$('#featured .row > div').eq(RanNum).show();
+				});
+			});
+		</script>
 	</div>
-</div>		
+
 {% endblock%}
