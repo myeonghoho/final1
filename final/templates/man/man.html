@@ -26,48 +26,91 @@
 	<div class="container">
 		<div class="row"> 
 
-			<!-- Content -->
-			<div id="content" class="8u skel-cell-important">
-				<section>
-					<header>
-						<h2>Image upload</h2>
-						<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
-					</header>
-					<style>
-						.addImage {
-							width: 400px;
-							height: 300px;
-							background-color: lightgray;
-							border-radius: 20px 20px / 20px 20px;
-							overflow: hidden;
-							margin: 0px 10px 10px 0px;
-						}
-				
-						.inputImg {
-							width: 450px;
-							height: 350px;
-						}
-						.image-preview {
-							width: 1300px;
-							height: 200px;
-							background-color: aquamarine;
-							display: flex;
-							gap: 20px;
-						}
-					</style>
-						<form method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
-							{% csrf_token %}
-							<div class="addImage" id="image-show"> <!-- 이미지 띄울 공간 -->
-							</div>
-							<input type="file" accept="image/*" onchange="loadFile(this)">
-							<button type="submit">등록</button>
-							<button type = "submit"> 취소 </button>
-						</form>
-						<div class="image-show" id="image-show"></div>
-						<script src="index.js"></script>
+
+				<!-- Content -->
+				<div id="content" class="8u skel-cell-important">
+					<section>
+						<header>
+							<h2>Image upload</h2>
+							<span class="byline">전신 사진을 넣어주세요</span>
+						</header>
+						<style>
+							.addImage {
+								width: 400px;
+								height: 300px;
+								background-color: lightgray;
+								border-radius: 20px 20px / 20px 20px;
+								overflow: hidden;
+								margin: 0px 10px 10px 0px;
+							}
 					
-				</section>
-			</div>
+							.inputImg {
+								width: 450px;
+								height: 350px;
+							}
+							.image-preview {
+								width: 1300px;
+								height: 200px;
+								background-color: lightgray;
+								display: flex;
+								gap: 20px;
+							}
+						</style>
+									
+							<div class="container">
+								<h1>Upload and Preview Image</h1>
+								<form id="uploadForm">
+									<input type="file" id="imageInput" accept="image/*">
+									<button type="submit">Upload</button>
+								</form>
+								<div class="preview">
+									<h2>Preview:</h2>
+									<img id="imagePreview" src="#" alt="Image Preview">
+								</div>
+							</div>
+							
+							<script>
+								document.getElementById('imageInput').addEventListener('change', function(event) {
+									const file = event.target.files[0];
+									if (file) {
+										const reader = new FileReader();
+										reader.onload = function(e) {
+											const img = document.getElementById('imagePreview');
+											img.src = e.target.result;
+											img.style.display = 'block';
+										}
+										reader.readAsDataURL(file);
+									}
+								});
+							
+								document.getElementById('uploadForm').addEventListener('submit', function(event) {
+									event.preventDefault();
+									const fileInput = document.getElementById('imageInput');
+									const file = fileInput.files[0];
+									if (file) {
+										const formData = new FormData();
+										formData.append('image', file);
+							
+										// Send the image file to the server (replace 'your-server-endpoint' with your actual server endpoint)
+										fetch('your-server-endpoint', {
+											method: 'POST',
+											body: formData
+										})
+										.then(response => response.json())
+										.then(data => {
+											alert('Image uploaded successfully!');
+										})
+										.catch(error => {
+											console.error('Error uploading image:', error);
+										});
+									} else {
+										alert('Please select an image to upload.');
+									}
+								});
+							</script>
+	
+					</section>
+				</div>
 		</div>
 	</div>
 </div>
@@ -114,9 +157,6 @@
 			});
 		</script>
 	</div>
-<<<<<<< HEAD
-
-=======
 </div>		
 <script>
 	function setThumbnail(event) {
@@ -131,5 +171,4 @@
 	  reader.readAsDataURL(event.target.files[0]);
 	}
 </script>
->>>>>>> origin/kms
 {% endblock%}
