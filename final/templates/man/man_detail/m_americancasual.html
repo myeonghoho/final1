@@ -1,0 +1,154 @@
+{% extends 'base_main.html' %}
+
+{% block base_content %}
+<!-- Header -->
+<div id="header">
+	<div class="container"> 
+		
+		<!-- Logo -->
+		<div id="logo">
+			<h1><a href="{% url 'recommand:main' %}">Fashion</a></h1>
+			<span>For your style</span>
+		</div>
+		
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="{% url 'recommand:man' %}">MAN</a></li>
+				<li><a href="{% url 'recommand:woman' %}">WOMAN</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+
+<!--스타일별 이미지 보기-->
+<div id="wrap">
+    <style>
+    #gallery{
+        margin: 0 auto;
+    }
+
+    ul#gallery {
+        margin-top: 30px;
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 5px;
+        max-width: 1250;
+        width: 100%;
+    }
+
+    ul#gallery > li {
+        position: relative;
+        background-color: #000;
+        overflow: hidden;
+        width: 400px;
+        height:500px;
+        padding-top: 30px;/* Maintain aspect ratio */
+        text-align: center;
+    }
+
+    ul#gallery > li::after {
+        box-sizing: border-box;
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        width: 87%;
+        height: 87%;
+        border: 2px solid #fff;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        content: 'Gallery';
+        font-size: 35px;
+        color: #fff;
+        opacity: 0;
+        transition: opacity 0.8s;
+    }
+
+    ul#gallery > li > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    }
+
+    ul#gallery > li:hover img {
+        transform: scale(1.18);
+        opacity: 0.65;
+    }
+
+    ul#gallery > li:hover::after {
+        opacity: 1;
+    }
+    </style>
+        
+    <ul id="gallery">
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F80243%2Fstreet_624a6292f1de2.jpg&type=sc960_832" alt="1"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzEyMTZfMjA0%2FMDAxNzAyNzA1MDgxMDEz.MOQHUaUUADZKwhdGL1Lh3UUIX4_on2wqk-i02jx-W3sg.k61r0sq3nrEdQixuVGe6Qia0uSrY5RjTadKtYtyoDwMg.JPEG.keita_hitomi%2F2cb8c52bdb2156584cac7599557ee8a4.jpg&type=sc960_832" alt="2"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F89063%2Fstreet_6409191cdb765.jpg&type=sc960_832" alt="3"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F33399%2Fstreet_58eee3079b84f.jpg%3F20200819023633&type=sc960_832" alt="4"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F94914%2Fstreet_6540ff50dd399.jpg&type=sc960_832" alt="5"></li></a>
+
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F93370%2Fstreet_64eed10e7707e.jpg&type=sc960_832" alt="6"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F83533%2Fstreet_62e73b2a99339.jpg&type=sc960_832" alt="7"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F98716%2Fstreet_662756c51623b.jpg&type=sc960_832" alt="8"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F82140%2Fstreet_62997a78ea766.jpg%3F20220603121553&type=sc960_832" alt="9"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F82493%2Fstreet_62b27c45de831.jpg&type=sc960_832" alt="10"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F81432%2Fstreet_627b28ad0d6ae.jpg&type=sc960_832" alt="11"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F97507%2Fstreet_65eff7cb93e6a.jpg&type=sc960_832" alt="12"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F82172%2Fstreet_62a1643e301b2.jpg%3F20220607090657&type=sc960_832" alt="13"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F003%2F2023%2F08%2F02%2FNISI20230802_0001330743_web_20230802092520_20230802093409591.jpg&type=sc960_832" alt="14"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA0MjhfNTIg%2FMDAxNjgyNjY2NDgyOTQx.4RsKoNKdzY3Hc1mdBMZKATTX2xIPvaqK1x8bEwPTzl0g.VEdg3dzvZcSBQ9T83HcaHsNYJbnTrI0H_CDESwcZR-Ag.JPEG.luvsuy76%2F202304271854251810_1_20230427185502279.jpg&type=sc960_832" alt="15"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F009%2F2023%2F03%2F31%2F0005109692_002_20230331101309113.jpg&type=sc960_832" alt="16"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F49778%2Fstreet_5c499f31d2d49.jpg&type=sc960_832" alt="17"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F58299%2Fstreet_5f8695eebfd9e.jpg&type=sc960_832" alt="18"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F39928%2Fstreet_5a6063e6de059.jpg%3F20200819042000&type=sc960_832" alt="19"></li></a>
+        <li><a href=""><img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fmfile_s01%2F_street_images%2F66505%2Fstreet_5fbdc4feb0a9d.jpg&type=sc960_832" alt="20"></li></a>
+        
+    </ul>
+
+    
+</div>
+
+
+
+<!-- Main -->
+<div id="main">
+	<div class="container">
+		<div class="row"> 
+            <style>
+                .pagination{--bs-pagination-padding-x:0.75rem;--bs-pagination-padding-y:0.375rem;--bs-pagination-font-size:1rem;--bs-pagination-color:var(--bs-link-color);--bs-pagination-bg:var(--bs-body-bg);--bs-pagination-border-width:var(--bs-border-width);--bs-pagination-border-color:var(--bs-border-color);--bs-pagination-border-radius:var(--bs-border-radius);--bs-pagination-hover-color:var(--bs-link-hover-color);--bs-pagination-hover-bg:var(--bs-tertiary-bg);--bs-pagination-hover-border-color:var(--bs-border-color);--bs-pagination-focus-color:var(--bs-link-hover-color);--bs-pagination-focus-bg:var(--bs-secondary-bg);--bs-pagination-focus-box-shadow:0 0 0 0.25rem rgba(13, 110, 253, 0.25);--bs-pagination-active-color:#fff;--bs-pagination-active-bg:#0d6efd;--bs-pagination-active-border-color:#0d6efd;--bs-pagination-disabled-color:var(--bs-secondary-color);--bs-pagination-disabled-bg:var(--bs-secondary-bg);--bs-pagination-disabled-border-color:var(--bs-border-color);display:flex;padding-left:0;list-style:none}
+                .page-link{position:relative;display:block;padding:var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);font-size:var(--bs-pagination-font-size);color:var(--bs-pagination-color);text-decoration:none;background-color:var(--bs-pagination-bg);border:var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.page-link{transition:none}}
+                .page-link:hover{z-index:2;color:var(--bs-pagination-hover-color);background-color:var(--bs-pagination-hover-bg);border-color:var(--bs-pagination-hover-border-color)}.page-link:focus{z-index:3;color:var(--bs-pagination-focus-color);background-color:var(--bs-pagination-focus-bg);outline:0;box-shadow:var(--bs-pagination-focus-box-shadow)}.active>.page-link,.page-link.active{z-index:3;color:var(--bs-pagination-active-color);background-color:var(--bs-pagination-active-bg);border-color:var(--bs-pagination-active-border-color)}.disabled>.page-link,.page-link.disabled{color:var(--bs-pagination-disabled-color);pointer-events:none;background-color:var(--bs-pagination-disabled-bg);border-color:var(--bs-pagination-disabled-border-color)}.page-item:not(:first-child) .page-link{margin-left:calc(var(--bs-border-width) * -1)}.page-item:first-child .page-link{border-top-left-radius:var(--bs-pagination-border-radius);border-bottom-left-radius:var(--bs-pagination-border-radius)}.page-item:last-child .page-link{border-top-right-radius:var(--bs-pagination-border-radius);border-bottom-right-radius:var(--bs-pagination-border-radius)}
+                .pagination-lg{--bs-pagination-padding-x:1.5rem;--bs-pagination-padding-y:0.75rem;--bs-pagination-font-size:1.25rem;--bs-pagination-border-radius:var(--bs-border-radius-lg)}
+                .pagination-sm{--bs-pagination-padding-x:0.5rem;--bs-pagination-padding-y:0.25rem;--bs-pagination-font-size:0.875rem;--bs-pagination-border-radius:var(--bs-border-radius-sm)}
+                
+            </style>
+           
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a class="page-link" href="#">7</a></li>
+                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                    <li class="page-item"><a class="page-link" href="#">9</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+          
+        </div>
+    </div>
+</div>
+
+{% endblock%}
