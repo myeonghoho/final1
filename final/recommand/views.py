@@ -19,3 +19,6 @@ def woman(request):
 def upload(request):
     return render(request, "upload.html")
 
+def m_ame(request):
+    return render(request, "man/man_detail/m_americancasual.html")
+
