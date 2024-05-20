@@ -67,6 +67,21 @@
 						<div class="image-show" id="image-show"></div>
 						<script src="index.js"></script>
 					
+<<<<<<< HEAD
+=======
+=======
+					<form method = GET class="inputImg" method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
+						
+						<div class="addImage" id="image-show"> <!-- 이미지 띄울 공간 -->
+							<div id="image_container"></div>
+						</div>
+						<input type="file" id=image accept="image/*" onchange="setThumbnail(event);">
+						<p></p>
+						<button type="submit">등록</button>
+						<button type = "submit"> 취소 </button>
+					</form>
+>>>>>>> origin/kms
+>>>>>>> 87120171510ec36596660d6faacad75a38638107
 				</section>
 			</div>
 		</div>
@@ -115,4 +130,25 @@
 			});
 		</script>
 	</div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+</div>		
+<script>
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+
+	  reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("div#image_container").appendChild(img);
+	  };
+
+	  reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
+>>>>>>> origin/kms
+>>>>>>> 87120171510ec36596660d6faacad75a38638107
 {% endblock%}
