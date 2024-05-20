@@ -26,7 +26,6 @@
 	<div class="container">
 		<div class="row"> 
 
-
 			<!-- Content -->
 			<div id="content" class="8u skel-cell-important">
 				<section>
@@ -56,6 +55,7 @@
 							gap: 20px;
 						}
 					</style>
+<<<<<<< HEAD
 						<form method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
 							{% csrf_token %}
 							<div class="addImage" id="image-show"> <!-- 이미지 띄울 공간 -->
@@ -67,11 +67,24 @@
 						<div class="image-show" id="image-show"></div>
 						<script src="index.js"></script>
 					
+=======
+					<form method = GET class="inputImg" method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터에 알맞는 enctype 설정 -->
+						
+						<div class="addImage" id="image-show"> <!-- 이미지 띄울 공간 -->
+							<div id="image_container"></div>
+						</div>
+						<input type="file" id=image accept="image/*" onchange="setThumbnail(event);">
+						<p></p>
+						<button type="submit">등록</button>
+						<button type = "submit"> 취소 </button>
+					</form>
+>>>>>>> origin/kms
 				</section>
 			</div>
 		</div>
 	</div>
 </div>
+
 <!-- Footer -->
 
 	<div id="featured">
@@ -114,5 +127,22 @@
 			});
 		</script>
 	</div>
+<<<<<<< HEAD
 
+=======
+</div>		
+<script>
+	function setThumbnail(event) {
+	  var reader = new FileReader();
+
+	  reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("div#image_container").appendChild(img);
+	  };
+
+	  reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
+>>>>>>> origin/kms
 {% endblock%}
