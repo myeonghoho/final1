@@ -32,57 +32,71 @@
 				
 				<div class="4u">
 					<h2>MAN</h2>
-					<a href="{% url 'recommand:man' %}" class="image full"><img src="../media/images/m_1.jpg" alt="" width="314" height="500"></a>
+					<a href="{% url 'recommand:man' %}" class="image full">
+						<img id="image_id_man" src="../media/images/man/1.jpg" width="314" height="500">
+					</a>
 					
 					<p><a href="{% url 'recommand:man' %}" class="button">More Details</a></p>
 				</div>
-
+				
 				<div class="4u">
 					<h2>WOMAN</h2>
-					<a href="{% url 'recommand:woman' %}" class="image full"><img src="../media/images/w_1.jpg" alt="" width="314" height="500"></a>
+					<a href="{% url 'recommand:woman' %}" class="image full">
+						<img id="image_id_woman" src="../media/images/woman/1.jpg" width="314" height="500">
+					</a>
 					
 					<p><a href="{% url 'recommand:woman' %}" class="button">More Details</a></p>
 				</div>
-				<div class ="4u">
-					<h2>test</h2>
-					<img id = "imge_id" src = "../media/images/man/1.jpg">
-					<script language = "javascript">
-						var obTimeOut; // claerTimeout() 함수 이용하여 Timeout 취소하기 위해 사용
-
-						var ObjectArray = new Array();
-						ObjectArray[1] = "1.jpg";
-						ObjectArray[2] = "2.jpg";
-						ObjectArray[3] = "../media/images/man/3.jpg";
-						ObjectArray[4] = "../media/images/man/4.jpg";
-						ObjectArray[5] = "../media/images/man/5.jpg";
-						ObjectArray[6] = "../media/images/man/6.jpg";
-
-						var nObjectCnt = 0;
-						function ShowDefaultRotate() //스스로 자신을 호출하는 재귀함수(Recursive Function)
-						{
-							nObjectCnt++;
+				
+				<script language="javascript">
+					var obTimeOutMan;
+					var obTimeOutWoman;
+					var ObjectArrayMan = [
+						"../media/images/man/1.jpg",
+						"../media/images/man/2.jpg",
+						"../media/images/man/3.jpg",
+						"../media/images/man/4.jpg",
+						"../media/images/man/5.jpg",
+						"../media/images/man/6.jpg"
+					];
+					var ObjectArrayWoman = [
+						"../media/images/woman/1.jpg",
+						"../media/images/woman/2.jpg",
+						"../media/images/woman/3.jpg",
+						"../media/images/woman/4.jpg",
+						"../media/images/woman/5.jpg",
+						"../media/images/woman/6.jpg"
+					];
+					var nObjectCntMan = 0;
+					var nObjectCntWoman = 0;
+				
+					function ShowDefaultRotateMan() {
+						nObjectCntMan++;
+						if (nObjectCntMan < ObjectArrayMan.length) {
+							document.getElementById("image_id_man").src = ObjectArrayMan[nObjectCntMan];
+							obTimeOutMan = setTimeout(ShowDefaultRotateMan, 5000);
+						} else {
+							clearTimeout(obTimeOutMan);
 						}
-						if(nObjectCnt < ObjectArray.length)// 배열의 개수 이내일때만 실행	
-						{
-							document.getElementById("img_id").src = ObjectArray[nObjectCnt];
-							obTimeOut = setTimeout("showDefaultRotate()", 1000); //1초후에 자기자신 호출
+					}
+				
+					function ShowDefaultRotateWoman() {
+						nObjectCntWoman++;
+						if (nObjectCntWoman < ObjectArrayWoman.length) {
+							document.getElementById("image_id_woman").src = ObjectArrayWoman[nObjectCntWoman];
+							obTimeOutWoman = setTimeout(ShowDefaultRotateWoman, 5000);
+						} else {
+							clearTimeout(obTimeOutWoman);
 						}
-
-						else
-						{
-							clearTimeout(obTimeOut); // 배열 개수만큼 반복하여 변환시킨 수 Timeout 종료
-
-						}
-						
-						function startAnimation()
-						{
-							obTimeOut = window.setTimeout(showDefaultRotate, 100); // 윈도우 로드 후 0.1초 후에 반복함수 호출
-						}
-
-						onload = startAnimation;
-
-					</script>
-				</div>
+					}
+				
+					function startAnimation() {
+						obTimeOutMan = setTimeout(ShowDefaultRotateMan, 100);
+						obTimeOutWoman = setTimeout(ShowDefaultRotateWoman, 100);
+					}
+				
+					window.onload = startAnimation;
+				</script>
 
 			</div>
 		</div>
